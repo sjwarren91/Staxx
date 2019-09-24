@@ -7,4 +7,8 @@ cache:
   directories:
     - node_modules
 before_install:
-  - mysql -e 'CREATE DATABASE testdb;'
+  - mysql -e 'CREATE DATABASE testdb;' -u root
+services:
+  - mysql
+notifications:
+ slack: melmon201905fsf3:Yij5VzU6bwMExz2FfG7Iu6K5
