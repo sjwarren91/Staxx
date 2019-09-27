@@ -32,6 +32,21 @@ header {
   z-index: 11;
 }
 
+footer {
+  margin: auto 0 0;
+  padding: 10px;
+}
+
+footer a {
+  margin: 0;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 300;
+  text-decoration: none;
+  color: #fff;
+}
+
 #staxx-logo {
   width: 220px;
   display: none;
@@ -50,7 +65,7 @@ header {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.486);
+  background: rgba(0, 0, 0, 0.586);
   border-radius: 5px;
   width: 600px;
   max-width: 95%;
@@ -98,6 +113,7 @@ small {
   align-items: baseline;
 }
 
+.form-group,
 .form-group2 {
   margin-top: 15px;
 }
@@ -118,7 +134,12 @@ small {
   border-radius: 5px;
   font-size: 1em;
   cursor: pointer;
+  transition-timing-function: ease-out;
   transition-duration: 150ms;
+}
+
+.submit-btn:hover {
+  background: #00bd6b;
 }
 
 #create-popup {
@@ -126,23 +147,11 @@ small {
   font-weight: 300;
   margin: 20px auto 0;
   cursor: pointer;
-  overflow: hidden;
-}
-
-#create-popup:hover {
+  transition-timing-function: ease-out;
   transition-duration: 150ms;
-  color: #00c46f;
 }
 
-.mismatch {
-  height: 0;
-  overflow: hidden;
-  color: rgb(255, 59, 59);
-  font-size: 0.7em;
-  margin: 0 0;
-  font-weight: bold;
-}
-
-.match2 {
-  height: 25px;
+footer a:hover,
+#create-popup:hover {
+  color: #00bd6b;
 }

@@ -3,7 +3,7 @@ $(document).ready(function() {
 
   function logoFade() {
     $("#staxx-logo")
-      .fadeIn(1300)
+      .fadeIn(1500)
       .animate(
         {
           width: "100px",
