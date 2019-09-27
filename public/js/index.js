@@ -1,99 +1,124 @@
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+$(document).ready(function() {
+  // Animation functions for documant.ready
 
-// The API object contains methods for each kind of request we'll make
-var API = {
-  saveExample: function(example) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
+  function logoFade() {
+    $("#staxx-logo")
+      .fadeIn(1300)
+      .animate(
+        {
+          width: "100px",
+          top: "35px",
+          left: "80px"
+        },
+        400
+      );
+  }
+
+  function panelFade() {
+    setTimeout(function() {
+      $(".signup").animate(
+        {
+          height: "350px",
+          padding: "30px"
+        },
+        800
+      );
+    }, 1700);
+  }
+
+  logoFade();
+  panelFade();
+
+  //On click functions to animate between sign in and create account
+
+  var accountAssumed = true;
+
+  $("#create-popup").on("click", function() {
+    if (accountAssumed) {
+      newAccount();
+    } else {
+      signInPage();
+    }
+  });
+
+  function newAccount() {
+    accountAssumed = false;
+    $(".form-group3").animate(
+      {
+        height: "75px",
+        margin: "15px 0 0"
       },
-      type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
-    });
-  },
-  getExamples: function() {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
-  },
-  deleteExample: function(id) {
-    return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE"
-    });
-  }
-};
-
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
-      var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
-
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": example.id
-        })
-        .append($a);
-
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
-
-      $li.append($button);
-
-      return $li;
-    });
-
-    $exampleList.empty();
-    $exampleList.append($examples);
-  });
-};
-
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
-  event.preventDefault();
-
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
-  };
-
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
-    return;
+      500
+    );
+    $(".signup").animate(
+      {
+        height: "433px"
+      },
+      500
+    );
+    $("h2").html("// New Account");
+    $(".submit-btn")
+      .html("Create Account")
+      .attr("data_state", "create-acc");
+    $("#create-popup").html("Back to Sign In");
   }
 
-  API.saveExample(example).then(function() {
-    refreshExamples();
+  function signInPage() {
+    accountAssumed = true;
+    $(".form-group3").animate(
+      {
+        height: "0px",
+        margin: "0 0 0"
+      },
+      500
+    );
+    $(".signup").animate(
+      {
+        height: "345px"
+      },
+      500
+    );
+    $("h2").html("// Sign In");
+    $(".submit-btn")
+      .html("Sign In")
+      .attr("data_state", "sign-in");
+    $("#create-popup").html("Create an account");
+  }
+
+  // function to prevent spaces being used in username and password inputs
+  $("input").on("keypress", function(e) {
+    if (e.which === 32) {
+      return false;
+    }
   });
 
-  $exampleText.val("");
-  $exampleDescription.val("");
-};
+  // On click function for submit button - data state is "sign-in" while values are for sign in,
+  // and data state is "creat-acc" when the values are for creating a new account, this is stored in
+  // formState variable.
 
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
+  $(".submit-btn").on("click", function(event) {
+    event.preventDefault();
 
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
+    var userName = $("#username")
+      .val()
+      .trim();
+    var password = $("#userpassword").val();
+
+    var confirmPassword = $("#confirmpassword").val();
+
+    // var formState = $(this).attr("data_state");
+
+    if (userName === "" || confirmPassword === "" || password === "") {
+      alert("More details needed");
+      return;
+    } else if (password !== confirmPassword && confirmPassword !== "") {
+      alert("Passwords must match");
+      $("#userpassword").val("");
+      $("#confirmpassword").val("");
+      return;
+    }
+    // GET request for existing users signing in
+
+    // POST request for New users creating account
   });
-};
-
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+});
