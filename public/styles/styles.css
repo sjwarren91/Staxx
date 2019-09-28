@@ -32,6 +32,31 @@ header {
   z-index: 11;
 }
 
+footer {
+  margin: auto 0 0;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+footer span,
+footer a {
+  margin: 0;
+  font-size: 0.6em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 300;
+  text-decoration: none;
+  color: #fff;
+  transition-timing-function: ease-out;
+  transition-duration: 150ms;
+}
+
+footer a:hover {
+  font-weight: bold;
+}
+
 #staxx-logo {
   width: 220px;
   display: none;
@@ -50,7 +75,7 @@ header {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.486);
+  background: rgba(0, 0, 0, 0.586);
   border-radius: 5px;
   width: 600px;
   max-width: 95%;
@@ -102,9 +127,58 @@ small {
   margin-top: 15px;
 }
 
+.first-last,
 .form-group3 {
   height: 0px;
   overflow: hidden;
+}
+
+.first-last {
+  display: flex;
+  justify-content: space-between;
+}
+
+.first-last > :first-child {
+  padding-right: 10px;
+}
+
+.first-last > :last-child {
+  padding-left: 10px;
+}
+
+.first-last div {
+  width: 50%;
+}
+
+.avatars {
+  height: 0px;
+  overflow: hidden;
+}
+
+.avatarBox {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.avatars img {
+  min-width: 60px;
+  width: 60px;
+  height: 60px;
+  opacity: 0.8;
+  transition-duration: 150ms;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0);
+}
+
+.selected {
+  opacity: 1 !important;
+  border: 2px solid rgba(255, 255, 255, 0.623) !important;
+}
+
+.avatars img:hover {
+  opacity: 1;
+  border: 2px solid rgba(255, 255, 255, 0.623);
 }
 
 .submit-btn {
@@ -118,7 +192,12 @@ small {
   border-radius: 5px;
   font-size: 1em;
   cursor: pointer;
+  transition-timing-function: ease-out;
   transition-duration: 150ms;
+}
+
+.submit-btn:hover {
+  background: #00bd6b;
 }
 
 #create-popup {
@@ -126,23 +205,10 @@ small {
   font-weight: 300;
   margin: 20px auto 0;
   cursor: pointer;
-  overflow: hidden;
+  transition-timing-function: ease-out;
+  transition-duration: 150ms;
 }
 
 #create-popup:hover {
-  transition-duration: 150ms;
-  color: #00c46f;
-}
-
-.mismatch {
-  height: 0;
-  overflow: hidden;
-  color: rgb(255, 59, 59);
-  font-size: 0.7em;
-  margin: 0 0;
-  font-weight: bold;
-}
-
-.match2 {
-  height: 25px;
+  color: #00bd6b;
 }
