@@ -35,16 +35,26 @@ header {
 footer {
   margin: auto 0 0;
   padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
+footer span,
 footer a {
   margin: 0;
-  font-size: 0.7em;
+  font-size: 0.6em;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-weight: 300;
   text-decoration: none;
   color: #fff;
+  transition-timing-function: ease-out;
+  transition-duration: 150ms;
+}
+
+footer a:hover {
+  font-weight: bold;
 }
 
 #staxx-logo {
@@ -113,14 +123,62 @@ small {
   align-items: baseline;
 }
 
-.form-group,
 .form-group2 {
   margin-top: 15px;
 }
 
+.first-last,
 .form-group3 {
   height: 0px;
   overflow: hidden;
+}
+
+.first-last {
+  display: flex;
+  justify-content: space-between;
+}
+
+.first-last > :first-child {
+  padding-right: 10px;
+}
+
+.first-last > :last-child {
+  padding-left: 10px;
+}
+
+.first-last div {
+  width: 50%;
+}
+
+.avatars {
+  height: 0px;
+  overflow: hidden;
+}
+
+.avatarBox {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.avatars img {
+  min-width: 60px;
+  width: 60px;
+  height: 60px;
+  opacity: 0.8;
+  transition-duration: 150ms;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0);
+}
+
+.selected {
+  opacity: 1 !important;
+  border: 2px solid rgba(255, 255, 255, 0.623) !important;
+}
+
+.avatars img:hover {
+  opacity: 1;
+  border: 2px solid rgba(255, 255, 255, 0.623);
 }
 
 .submit-btn {
@@ -151,7 +209,6 @@ small {
   transition-duration: 150ms;
 }
 
-footer a:hover,
 #create-popup:hover {
   color: #00bd6b;
 }
