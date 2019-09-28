@@ -69,7 +69,7 @@ $(document).ready(function() {
       },
       500
     );
-    $$("#passwordlabel").html("Create Password");
+    $("#passwordlabel").html("Create Password");
     $("#userpassword").attr("placeholder", "New Password");
     $("h2").html("//  New Account");
     $(".submit-btn")
