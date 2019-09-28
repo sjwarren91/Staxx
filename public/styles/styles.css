@@ -57,6 +57,54 @@ footer a:hover {
   font-weight: bold;
 }
 
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 95%;
+  margin: 0 auto;
+  height: 100%;
+}
+
+#profileheader {
+  padding: 5px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  margin-right: 40px;
+}
+
+#userIdBox {
+  line-height: 0.82rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 35px;
+  align-items: flex-end;
+}
+
+#userIdBox span {
+  font-size: 0.65em;
+  color: #00b064;
+}
+
+#userIdBox h4 {
+  margin: 0;
+  color: rgb(63, 63, 63);
+}
+
+#headerImg {
+  width: 37px;
+  border-radius: 5px;
+  margin: 0 0 0 10px;
+  border: 1px solid #fff;
+  padding: 1px;
+}
+
+#staxx-logo-d {
+  width: 100px;
+}
+
 #staxx-logo {
   width: 220px;
   display: none;
@@ -212,3 +260,83 @@ small {
 #create-popup:hover {
   color: #00bd6b;
 }
+
+/* ========= Hamburger Menu CSS ========= */
+
+#nav-icon3 {
+  width: 30px;
+  height: 25px;
+  position: absolute;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+  right: 2.4%;
+  top: 26px;
+}
+
+#nav-icon3 span {
+  z-index: 150;
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: #00b064;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: 0.2s ease-in-out;
+  -moz-transition: 0.2s ease-in-out;
+  -o-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+}
+
+#nav-icon3 span:nth-child(1) {
+  top: 1px;
+}
+
+#nav-icon3 span:nth-child(2),
+#nav-icon3 span:nth-child(3) {
+  top: 8px;
+}
+
+#nav-icon3 span:nth-child(4) {
+  top: 15px;
+}
+
+#nav-icon3.open span:nth-child(1) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
+}
+
+#nav-icon3.open span:nth-child(2) {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+#nav-icon3.open span:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+#nav-icon3.open span:nth-child(4) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
+}
+
+/* ========= End Hamburger Menu CSS ======== */

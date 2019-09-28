@@ -8,7 +8,7 @@ $(document).ready(function() {
         {
           width: "100px",
           top: "35px",
-          left: "80px"
+          left: "6%"
         },
         400
       );
@@ -69,6 +69,8 @@ $(document).ready(function() {
       },
       500
     );
+    $$("#passwordlabel").html("Create Password");
+    $("#userpassword").attr("placeholder", "New Password");
     $("h2").html("//  New Account");
     $(".submit-btn")
       .html("Create Account")
@@ -103,6 +105,8 @@ $(document).ready(function() {
       },
       500
     );
+    $$("#passwordlabel").html("Password");
+    $("#userpassword").attr("placeholder", "Enter Password");
     $("h2").html("//  Sign In");
     $(".submit-btn")
       .html("Sign In")
