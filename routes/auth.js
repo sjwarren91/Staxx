@@ -20,7 +20,7 @@ module.exports = function(app, passport) {
   // route for sending logged in user to dashboard, using the isLoggedIn middleware
   app.get("/dashboard", isLoggedIn, function(req, res) {
     // the current user in the session can be found in the following object
-    // console.log(req.user);
+    console.log(req.user);
     res.render("dashboard");
   });
 
