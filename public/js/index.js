@@ -112,7 +112,9 @@ $(document).ready(function() {
 
   // function to prevent spaces being used in username and password inputs
   $("input").on("keypress", function(e) {
-    if (e.which == 32) return false;
+    if (e.which === 32) {
+      return false;
+    }
   });
 
   // Avatar highlight on selection
