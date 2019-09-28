@@ -3,7 +3,7 @@ var db = require("../models");
 
 module.exports = function(passport) {
   var LocalStrategy = require("passport-local").Strategy;
-  //signup
+  //signup strategy
   passport.use(
     "local-signup",
     new LocalStrategy(
@@ -51,7 +51,7 @@ module.exports = function(passport) {
     )
   );
 
-  //signin
+  //signin strategy
   passport.use(
     "local-signin",
     new LocalStrategy(
