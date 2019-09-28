@@ -36,7 +36,7 @@ module.exports = function(passport) {
               lastname: req.body.lastname
             };
 
-            db.User.create(data).then(function(newUser, created) {
+            db.User.create(data).then(function(newUser) {
               if (!newUser) {
                 return done(null, false);
               }
