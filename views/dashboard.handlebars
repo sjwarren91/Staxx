@@ -1,12 +1,12 @@
 <header>
   <div class="header-content">
-    <img src="./assets/images/staxx-green.svg" id="staxx-logo-d" alt="Staxx Logo">
+    <img src="/images/staxx-green.svg" id="staxx-logo-d" alt="Staxx Logo">
     <div id="profileheader">
       <div id="userIdBox">
         <span>Welcome</span>
         <h4>{{ userName }}</h4>
       </div>
-      <img src="{{ imgSrc }}" id="img-{{userId}}" alt="Profile Picture">
+      <img src="{{ imgSrc }}" id="headerImg" alt="Profile Picture">
       <div id="nav-icon3">
         <span></span>
         <span></span>
@@ -17,7 +17,21 @@
   </div>
 </header>
 
-<div></div>
+<section id="dash">
+  <div>
+    <img src="{{ imgSrc }}" id="pageImg" alt="Profile Picture">
+    <span>Username</span>
+    <h4>{{ userName }}</h4>
+    <h3>Stack Tracker</h3>
+    <div id="moneyMeter">
+      <div style="width: {{ percentLeft }}%;"></div>
+    </div>
+    <p>You have spent {{ percentLeft }}% of your money.</p>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+</section>
 
 
 
