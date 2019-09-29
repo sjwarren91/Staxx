@@ -33,7 +33,8 @@ module.exports = function(passport) {
               email: email,
               password: userPassword,
               firstname: req.body.firstname,
-              lastname: req.body.lastname
+              lastname: req.body.lastname,
+              avatar: req.body.avatar
             };
 
             db.User.create(data).then(function(newUser) {

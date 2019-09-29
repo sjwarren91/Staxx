@@ -69,7 +69,7 @@ $(document).ready(function() {
       },
       500
     );
-    $$("#passwordlabel").html("Create Password");
+    $("#passwordlabel").html("Create Password");
     $("#userpassword").attr("placeholder", "New Password");
     $("h2").html("//  New Account");
     $(".submit-btn")
@@ -105,7 +105,7 @@ $(document).ready(function() {
       },
       500
     );
-    $$("#passwordlabel").html("Password");
+    $("#passwordlabel").html("Password");
     $("#userpassword").attr("placeholder", "Enter Password");
     $("h2").html("//  Sign In");
     $(".submit-btn")
@@ -142,7 +142,7 @@ $(document).ready(function() {
     var firstName = $("#firstname")
       .val()
       .trim();
-    var lastName = $("#firstname")
+    var lastName = $("#lastname")
       .val()
       .trim();
     var confirmPassword = $("#confirmpassword").val();
@@ -184,8 +184,34 @@ $(document).ready(function() {
       return;
     }
 
-    // GET request for existing users signing in
+    if (formState === "sign-in") {
+      var data = {
+        email: email,
+        password: password
+      };
+      var requestURL = "/signin";
+    } else {
+      var data = {
+        firstname: firstName,
+        lastname: lastName,
+        email: email,
+        password: password,
+        avatar: avatarId
+      };
+      var requestURL = "/signup";
+    }
 
-    // POST request for New users creating accounts
+    console.log("data:", data);
+    console.log("request:", requestURL);
+
+    // POST request for New or existing users creating accounts
+    $.ajax(requestURL, {
+      method: "POST",
+      data: data
+    }).then(function() {
+      console.log("Signed in");
+    });
+
+    // GET request for existing users signing in
   });
 });
