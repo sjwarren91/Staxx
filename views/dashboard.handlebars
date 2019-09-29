@@ -19,14 +19,28 @@
 
 <section id="dash">
   <div>
-    <img src="../public/images/{{ avatar }}" id="pageImg" alt="Profile Picture">
-    <span>Username</span>
-    <h4>{{ email }}</h4>
-    <h3>Stack Tracker</h3>
-    <div id="moneyMeter">
-      <div style="width: {{ percentLeft }}%;"></div>
+    <div id="profile-dash">
+      <img src="../public/images/{{ avatar }}" id="pageImg" alt="Profile Picture">
+      <span>Username</span>
+      <h4>{{ email }}</h4>
+      <h3>Stack Tracker</h3>
+      <div id="moneyMeter">
+        <div style="width: {{ percentLeft }}%;"></div>
+      </div>
+      <p>You have spent {{ percentLeft }}% of your money.</p>
     </div>
-    <p>You have spent {{ percentLeft }}% of your money.</p>
+    <div id="alerts">
+      {{!-- alertNum will display:none when it is empty - should only contain
+      html when there are notifictions to be seen --}}
+      <div id="alertNum"></div>
+      <h5>Notifications</h5>
+      <ul>
+        {{!-- Placeholder List will be generated and appended to 
+        #alertNum -  .html() for the alertTime can come from momentJS --}}
+        <li>2 Days Until Refresh <span class="alertTime">12:03am Oct 8</span></li>
+        <li>Bill Due <span class="alertTime">10:24am Oct 7</span></li>
+      </ul>
+    </div>
   </div>
   <div class="chart"><canvas id="doughnut-chart"></canvas></div>
 </section>
