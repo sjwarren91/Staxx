@@ -209,6 +209,7 @@ $(document).ready(function() {
       method: "POST",
       data: data
     }).then(function() {
+      window.location.href = "/dashboard";
       console.log("Signed in");
     });
 
