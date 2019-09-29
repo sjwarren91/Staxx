@@ -279,9 +279,9 @@ small {
   align-items: center;
   position: relative;
   justify-content: flex-start;
-  border-radius: 6px;
+  border-radius: 13px;
   align-self: flex-start;
-  margin: 0 20px 20px 0;
+  margin: 0 0 10px 0;
 }
 
 #pageImg {
@@ -343,19 +343,18 @@ small {
 }
 
 .chart {
-  width: 400px;
-  max-width: 95%;
+  width: 100%;
   margin: 0 auto 0;
   padding: 20px 20px 35px;
   background: rgba(20, 20, 20, 0.811);
   flex: 1;
-  border-radius: 6px;
+  border-radius: 13px;
 }
 
 #alerts {
   background: rgba(20, 20, 20, 0.811);
   position: relative;
-  border-radius: 6px;
+  border-radius: 13px;
   color: #eee;
   width: 100%;
   align-self: flex-start;
@@ -363,7 +362,7 @@ small {
 }
 
 #dash > :first-child {
-  margin-right: 20px;
+  margin-right: 10px;
   display: flex;
   flex-direction: column;
 }
@@ -434,7 +433,7 @@ h5 {
 
 .paymentInput {
   width: 100%;
-  margin: 10px 0 20px 0;
+  margin: 10px 0;
 
   background: rgba(20, 20, 20, 0.811);
   flex: 1;
@@ -477,6 +476,87 @@ h5 {
 
 #paymentSubmit:hover {
   color: #fff;
+  background: #00c26e;
+}
+
+#category {
+  margin: 10px 0 0;
+  position: relative;
+}
+
+#category select {
+  height: 50px;
+  width: 100%;
+  font-size: 1.4em;
+  border: none;
+  font-weight: 300;
+  font-family: "Roboto Condensed", sans-serif;
+  background: rgba(20, 20, 20, 0.811);
+  color: rgb(238, 238, 238);
+}
+
+#transactionsPanel {
+  position: absolute;
+  top: 70px;
+  left: -230px;
+  padding: 40px;
+  /* width: 200px; */
+  background: rgba(17, 17, 17, 0.811);
+  height: 100vh;
+  margin: 0 auto;
+  transition-duration: 450ms;
+}
+
+.transactionsPanel-clicked {
+  left: 0px !important;
+}
+
+#transactionsPanel ul {
+  list-style: none;
+  padding-left: 0;
+  width: 150px;
+  /* text-align: right; */
+}
+
+#transactionsPanel li {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.227);
+}
+
+#transactionsPanel span {
+  color: #00b064;
+  font-size: 1.2em;
+}
+
+#transactionsPanel p {
+  margin: 3px;
+  font-size: 0.7em;
+  color: #ccc;
+}
+
+.titleAndBtn {
+  display: flex;
+  justify-content: space-between;
+  align-content: baseline;
+  width: 100%;
+  flex: 0;
+  height: 25px;
+}
+
+.allTransactions {
+  color: rgba(255, 255, 255, 0.744);
+  border: 1px solid rgba(255, 255, 255, 0.644);
+  font-size: 0.7em;
+  border-radius: 6px;
+  background: rgba(7, 7, 7, 0.342);
+  display: inline;
+  transition-duration: 150ms;
+}
+
+.allTransactions:hover {
+  color: rgba(5, 5, 5, 0.744);
+  border: 1px solid #00c26e;
   background: #00c26e;
 }
 
