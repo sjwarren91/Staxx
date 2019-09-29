@@ -15,6 +15,21 @@ module.exports = function(app) {
     });
   });
 
+  // Set goal
+  app.post("/setgoal", function(req, res) {
+    console.log(req.body);
+    db.User.update(req.body, {
+      where: {
+        id: req.user.id
+      }
+    }).then(function(data) {
+      // Not sure if this is the best way to do this
+      if (data) {
+        res.redirect("dashboard");
+      }
+    });
+  });
+
   // Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {
     db.Example.destroy({
