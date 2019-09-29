@@ -26,6 +26,18 @@ module.exports = function(sequelize, DataTypes) {
         validate: {
           is: ["^[a-z]+$", "i"]
         }
+      },
+      avatar: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      goal: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          isNumeric: true
+        },
+        defaultValue: 0
       }
     },
     {
