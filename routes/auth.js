@@ -21,7 +21,7 @@ module.exports = function(app, passport) {
   app.get("/dashboard", isLoggedIn, function(req, res) {
     // the current user in the session can be found in the following object
     console.log(req.user);
-    res.render("dashboard");
+    res.render("dashboard", req.user);
   });
 
   // route for destroying the current session and logging the user out
