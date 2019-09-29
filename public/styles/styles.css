@@ -14,8 +14,7 @@ body {
   flex-direction: column;
   align-items: center;
   height: 100vh;
-  background: url("../images/lucas-favre-MNXaW_ABlZY-unsplash.jpg") no-repeat
-    center #f8f8f8;
+  background: url("/images/bg-img.jpg") no-repeat center top #0d0d0d;
   background-size: cover;
   margin: 0;
 }
@@ -30,6 +29,7 @@ header {
   height: 70px;
   width: 100%;
   z-index: 11;
+  position: absolute;
 }
 
 footer {
@@ -264,15 +264,16 @@ small {
 /*      Dashboard     */
 
 #dash {
-  width: 700px;
+  width: 800px;
   max-width: 95%;
-  margin: 100px auto;
+  margin: 140px auto 20px;
+  display: flex;
 }
 
 #dash > :first-child {
   background: rgba(66, 66, 66, 0.225);
   padding: 40px 20px 20px;
-  width: 200px;
+  width: 250px;
   /* height: 130px; */
   display: flex;
   flex-direction: column;
@@ -280,6 +281,8 @@ small {
   position: relative;
   justify-content: flex-start;
   border-radius: 6px;
+  align-self: flex-start;
+  margin: 0 20px 20px 0;
 }
 
 #pageImg {
@@ -339,6 +342,16 @@ small {
   text-transform: uppercase;
   font-weight: 300;
   letter-spacing: 0.06em;
+}
+
+.chart {
+  width: 400px;
+  max-width: 95%;
+  margin: 0 auto 0;
+  padding: 20px 20px 35px;
+  background: rgba(32, 32, 32, 0.525);
+  flex: 1;
+  border-radius: 6px;
 }
 
 /* ========= Hamburger Menu CSS ========= */
