@@ -6,6 +6,11 @@ $(document).ready(function() {
   });
 });
 
+$(".allTransactions").on("click", function(event) {
+  event.preventDefault();
+  $("#transactionsPanel").toggleClass("transactionsPanel-clicked");
+});
+
 // Chart
 new Chart(document.getElementById("doughnut-chart"), {
   type: "doughnut",
