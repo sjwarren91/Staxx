@@ -13,6 +13,11 @@ $(".allTransactions").on("click", function(event) {
   $("#transactionsPanel").toggleClass("transactionsPanel-clicked");
 });
 
+$(".allTransactions").on("click", function(event) {
+  event.preventDefault();
+  $("#transactionsPanel").toggleClass("transactionsPanel-clicked");
+});
+
 // Chart
 var expChart = new Chart(document.getElementById("doughnut-chart"), {
   type: "doughnut",

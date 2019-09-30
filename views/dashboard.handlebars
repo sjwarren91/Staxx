@@ -78,7 +78,21 @@
 
 <div id="transactionsPanel">
   <h4>Transaction History</h4>
+<<<<<<< HEAD
   {{>expense/block}}
+=======
+  <ul>
+    {{#if transactions}}
+    {{#each transactions}}
+    <li>
+      <span>{{ amount }}</span>
+      <p>{{ category }}</p>
+      <p>{{ timeStamp }}</p>
+    </li>
+    {{/each}}
+    {{/if}}
+  </ul>
+>>>>>>> 47822aefa5f805b65760a8d0e636b2bc9407d979
 </div>
 
 
