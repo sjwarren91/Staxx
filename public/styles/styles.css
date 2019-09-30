@@ -505,6 +505,7 @@ h5 {
   height: 100vh;
   margin: 0 auto;
   transition-duration: 450ms;
+  overflow-y: scroll;
 }
 
 .transactionsPanel-clicked {

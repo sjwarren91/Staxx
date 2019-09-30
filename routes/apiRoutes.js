@@ -31,6 +31,23 @@ module.exports = function(app) {
     });
   });
 
+  // Get all User transactions
+  app.get("/userexps", function(req, res) {
+    db.Expense.findAll({
+      where: {
+        UserId: req.user.id
+      }
+    }).then(function(data) {
+      var render = [];
+      data.forEach(function(element) {
+        element.dataValues.amount /= 100;
+        render.push(element.dataValues);
+      });
+      console.log(render);
+      res.render("expenses", { transactions: render });
+    });
+  });
+
   // Create a new expense
   app.post("/expenses", function(req, res) {
     db.Expense.create({

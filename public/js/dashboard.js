@@ -6,11 +6,7 @@ $(document).ready(function() {
     $("#header-menu").toggleClass("header-menu-clicked");
   });
   getChart();
-});
-
-$(".allTransactions").on("click", function(event) {
-  event.preventDefault();
-  $("#transactionsPanel").toggleClass("transactionsPanel-clicked");
+  getTransactions();
 });
 
 $(".allTransactions").on("click", function(event) {
@@ -75,6 +71,16 @@ function getChart() {
   }).then(function(data) {
     console.log(data);
     updateChart(expChart, data);
+  });
+}
+
+// function for getting all transactions
+function getTransactions() {
+  $.ajax("userexps", {
+    method: "GET"
+  }).then(function(data) {
+    console.log(data);
+    $("#transactionsPanel").html(data);
   });
 }
 
