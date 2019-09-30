@@ -1,17 +1,45 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+  // Get all expenses for user
+  app.get("/expenses", function(req, res) {
+    db.Expense.findAll({
+      where: {
+        UserId: req.user.id
+      },
+      include: [db.User] //unsure if this is necessary
+    }).then(function(data) {
+      console.log(data);
+      res.json(data);
     });
   });
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
+  // Get all expenses for user and join on category
+  app.get("/expenseChart", function(req, res) {
+    db.Expense.findAll({
+      attributes: [
+        "category",
+        [db.sequelize.fn("sum", db.sequelize.col("amount")), "total"]
+      ],
+      group: "category",
+      order: [["category"]],
+      where: {
+        UserId: req.user.id // "1" for test, need to replace with req.user.id
+      }
+    }).then(function(data) {
+      res.json(data);
+    });
+  });
+
+  // Create a new expense
+  app.post("/expenses", function(req, res) {
+    db.Expense.create({
+      name: req.body.name,
+      amount: req.body.amount,
+      category: req.body.category,
+      UserId: req.user.id // for test, needs to be replaced with req.user.id
+    }).then(function(data) {
+      res.json(data);
     });
   });
 
@@ -27,17 +55,6 @@ module.exports = function(app) {
       if (data) {
         res.redirect("dashboard");
       }
-    });
-  });
-
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(function(dbExample) {
-      res.json(dbExample);
     });
   });
 };

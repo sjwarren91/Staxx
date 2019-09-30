@@ -5,6 +5,7 @@ $(document).ready(function() {
     $("div.menu").toggleClass("menu-clicked");
     $("#header-menu").toggleClass("header-menu-clicked");
   });
+  getChart();
 });
 
 $(".allTransactions").on("click", function(event) {
@@ -13,10 +14,10 @@ $(".allTransactions").on("click", function(event) {
 });
 
 // Chart
-new Chart(document.getElementById("doughnut-chart"), {
+var expChart = new Chart(document.getElementById("doughnut-chart"), {
   type: "doughnut",
   data: {
-    labels: ["Food", "Drink", "Clothing", "Treats", "Drugs"],
+    labels: [],
     datasets: [
       {
         label: "Spending",
@@ -27,7 +28,7 @@ new Chart(document.getElementById("doughnut-chart"), {
           "#ff9b6c",
           "#ea4651"
         ],
-        data: dataArray, // the data array goes here
+        data: [], // the data array goes here
         borderColor: "##eee",
         borderWidth: 1
       }
@@ -50,6 +51,27 @@ new Chart(document.getElementById("doughnut-chart"), {
     }
   }
 });
+
+// function for updating chart
+function updateChart(chart, data) {
+  chart.data.labels = [];
+  chart.data.datasets[0].data = [];
+  data.forEach(function(ctg) {
+    chart.data.labels.push(ctg.category);
+    chart.data.datasets[0].data.push(ctg.total);
+  });
+  chart.update();
+}
+
+// function for getting the chart
+function getChart() {
+  $.ajax("expenseChart", {
+    method: "GET"
+  }).then(function(data) {
+    console.log(data);
+    updateChart(expChart, data);
+  });
+}
 
 // Getting the transaction values, minus the $ sign and the commas
 
@@ -112,14 +134,34 @@ function formatCurrency(input, blur) {
 $("#paymentSubmit").on("click", function(event) {
   event.preventDefault();
 
-  if (transactionArray.length > 0) {
-    var amount = transactionArray[transactionArray.length - 1];
-    amount = amount.replace(/[$,]/g, "");
-  } else {
+  if ($("#category option:selected").text() === "Category") {
+    alert("Please select an expense category");
     return;
   }
 
-  console.log(amount);
+  if (transactionArray.length > 0) {
+    var amount = transactionArray[transactionArray.length - 1];
+    amount = amount.replace(/[$,]/g, "");
+    amount = amount * 100;
+  } else {
+    return;
+  }
+  $("#currency-field").val("");
+  $("#category option[value=0]").attr("selected", "selected");
 
-  //amount is the value of the trasnaction with $ and commas removed.
+  var expense = {
+    name: "new expense",
+    amount: amount,
+    category: $("#category option:selected").text()
+  };
+
+  $.ajax("/expenses", {
+    method: "POST",
+    data: expense
+  }).then(function(data) {
+    console.log(data);
+    getChart();
+  });
+
+  console.log(amount);
 });

@@ -1,0 +1,11 @@
+<ul>
+    {{#if transactions}}
+    {{#each transactions}}
+    <li>
+      <span>{{ amount }}</span>
+      <p>{{ category }}</p>
+      <p>{{ timeStamp }}</p>
+    </li>
+    {{/each}}
+    {{/if}}
+  </ul>
