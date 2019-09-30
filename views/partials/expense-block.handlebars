@@ -1,0 +1,12 @@
+<h4>Transaction History</h4>
+<ul>
+    {{#if transactions}}
+    {{#each transactions}}
+    <li>
+      <span>${{ amount }}</span>
+      <p>{{ category }}</p>
+      <p>{{ createdAt }}</p>
+    </li>
+    {{/each}}
+    {{/if}}
+  </ul>

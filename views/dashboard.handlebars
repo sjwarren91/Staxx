@@ -4,9 +4,9 @@
     <div id="profileheader">
       <div id="userIdBox">
         <span>Welcome</span>
-        <h4>{{ email }}</h4>
+        <h4>{{ firstname }}</h4>
       </div>
-      <img src="../public/images/{{ avatar }}" id="headerImg" alt="Profile Picture">
+      <img src="../images/{{ avatar }}.jpg" id="headerImg" alt="Profile Picture">
       <div id="nav-icon3">
         <span></span>
         <span></span>
@@ -27,9 +27,9 @@
 <section id="dash">
   <div>
     <div id="profile-dash">
-      <img src="../public/images/{{ avatar }}" id="pageImg" alt="Profile Picture">
+      <img src="../images/{{ avatar }}.jpg" id="pageImg" alt="Profile Picture">
       <span>Username</span>
-      <h4>{{ email }}</h4>
+      <h4>{{ firstname }}</h4>
       <h3>Stack Tracker</h3>
       <div id="moneyMeter">
         <div style="width: {{ percentLeft }}%;"></div>
@@ -58,9 +58,9 @@
     <div id="category">
       <select>
         <option value="0">Category</option>
-        {{#each categories}}
-        <option value="{{ id }}">{{ category }}</option>
-        {{/each}}
+        <option value="1">Food</option>
+        <option value="2">Drink</option>
+        <option value="3">Party</option>
       </select>
     </div>
     <div class="paymentInput">
@@ -77,18 +77,7 @@
 </section>
 
 <div id="transactionsPanel">
-  <h4>Transaction History</h4>
-  <ul>
-    {{#if transactions}}
-    {{#each transactions}}
-    <li>
-      <span>{{ amount }}</span>
-      <p>{{ category }}</p>
-      <p>{{ timeStamp }}</p>
-    </li>
-    {{/each}}
-    {{/if}}
-  </ul>
+  
 </div>
 
 
