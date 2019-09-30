@@ -560,6 +560,44 @@ h5 {
   background: #00c26e;
 }
 
+#header-menu {
+  width: 200px;
+  text-align: center;
+  position: absolute;
+  right: 15px;
+  top: 70px;
+  transform: translateY(-100%);
+  transition-duration: 250ms;
+}
+
+.header-menu-clicked {
+  transform: translateY(0) !important;
+}
+
+#header-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#header-menu ul > :last-child {
+  border-radius: 0px 0px 13px 13px;
+}
+
+#header-menu li {
+  padding: 13px;
+  color: rgb(184, 184, 184);
+  font-size: 0.9em;
+  transition-duration: 150ms;
+  cursor: pointer;
+  background: rgba(53, 53, 53, 0.342);
+}
+
+#header-menu li:hover {
+  background: #00c26ee3;
+  color: #0d0d0d;
+}
+
 /* ========= Hamburger Menu CSS ========= */
 
 #nav-icon3 {
