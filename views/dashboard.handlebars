@@ -16,6 +16,13 @@
     </div>
   </div>
 </header>
+<div id="header-menu">
+  <ul>
+    <li>
+      <span>Log Out</span>
+    </li>
+  </ul>
+</div>
 
 <section id="dash">
   <div>
@@ -35,10 +42,11 @@
       <div id="alertNum"></div>
       <h5>Notifications</h5>
       <ul>
-        {{!-- Placeholder List will be generated and appended to 
-        #alertNum -  .html() for the alertTime can come from momentJS --}}
-        <li>2 Days Until Refresh <span class="alertTime">12:03am Oct 8</span></li>
-        <li>Bill Due <span class="alertTime">10:24am Oct 7</span></li>
+        {{#if notifications}}
+        {{#each categories}}
+        <li>{{ notification }} <span class="alertTime">{{ notificationTime }}</span></li>
+        {{/each}}
+        {{/if}}
       </ul>
     </div>
   </div>
@@ -69,6 +77,7 @@
 <div id="transactionsPanel">
   <h4>Transaction History</h4>
   <ul>
+    {{#if transactions}}
     {{#each transactions}}
     <li>
       <span>{{ amount }}</span>
@@ -76,6 +85,7 @@
       <p>{{ timeStamp }}</p>
     </li>
     {{/each}}
+    {{/if}}
   </ul>
 </div>
 
