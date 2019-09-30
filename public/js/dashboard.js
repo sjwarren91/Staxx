@@ -70,6 +70,9 @@ function getChart() {
     method: "GET"
   }).then(function(data) {
     console.log(data);
+    data.forEach(function(cat) {
+      cat.total /= 100;
+    });
     updateChart(expChart, data);
   });
 }
