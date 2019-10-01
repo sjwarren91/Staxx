@@ -88,7 +88,7 @@ function getChart() {
 
 // function for getting all transactions
 function getTransactions() {
-  $.ajax("userexps", {
+  $.ajax("expenses", {
     method: "GET"
   }).then(function(data) {
     console.log(data);
