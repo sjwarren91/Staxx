@@ -170,7 +170,7 @@ $("#paymentSubmit").on("click", function(event) {
     return;
   }
   $("#currency-field").val("");
-  $("#category option[value=0]").attr("selected", "selected");
+  //$("#category").text("Category");
 
   var expense = {
     name: "new expense",
