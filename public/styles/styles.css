@@ -22,6 +22,8 @@ body {
 h2 {
   margin: 0;
   transition-duration: 150ms;
+  font-size: 1.2em;
+  font-weight: 600;
 }
 
 header {
@@ -34,7 +36,7 @@ header {
 
 footer {
   margin: auto 0 0;
-  padding: 10px;
+  padding: 15px 25px;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -112,7 +114,7 @@ footer a:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 10;
+  z-index: 15;
 }
 
 .signup {
@@ -120,12 +122,12 @@ footer a:hover {
   overflow: hidden;
   color: #fff;
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.586);
-  border-radius: 5px;
-  width: 600px;
+  background: rgba(0, 0, 0, 0.486);
+  border-radius: 12px;
+  width: 700px;
   max-width: 95%;
   display: flex;
   flex-direction: column;
@@ -264,7 +266,7 @@ small {
 /*      Dashboard     */
 
 #dash {
-  width: 800px;
+  width: 770px;
   max-width: 95%;
   margin: 140px auto 20px;
   display: flex;
@@ -273,7 +275,7 @@ small {
 #profile-dash {
   background: rgba(20, 20, 20, 0.811);
   padding: 40px 20px 20px;
-  width: 250px;
+  width: 250
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -304,6 +306,7 @@ small {
 
 #moneyMeter > :first-child {
   height: 10px;
+  width: 70%;
   background: linear-gradient(#00b064, #01c46f);
   border-radius: 10px;
 }
@@ -344,11 +347,12 @@ small {
 
 .chart {
   width: 100%;
-  margin: 0 auto 0;
-  padding: 20px 20px 35px;
+  margin-right: 0;
+  padding: 20px 20px 30px;
   background: rgba(20, 20, 20, 0.811);
   flex: 1;
   border-radius: 13px;
+  position: relative;
 }
 
 #alerts {
@@ -375,6 +379,7 @@ small {
   padding-left: 0;
   line-height: 1.3em;
   color: #01c46f;
+  margin: 0;
 }
 
 #alertNum {
@@ -394,10 +399,6 @@ small {
   transform: translate(40%, -40%);
 }
 
-#alertNum:empty {
-  display: none;
-}
-
 h5 {
   display: inline-block;
   color: rgba(224, 224, 224, 0.692);
@@ -408,6 +409,10 @@ h5 {
   font-weight: 300;
   width: 100%;
   text-align: center;
+}
+
+#alertNum:empty {
+  display: none;
 }
 
 .alertTime {
@@ -425,9 +430,7 @@ h5 {
   border-radius: 13px;
   color: #01c46f;
   background: #11111100;
-  /* border: 1px solid #eee; */
   margin: 0;
-  /* text-align: center; */
   font-family: "Roboto Condensed", sans-serif;
 }
 
@@ -455,7 +458,7 @@ h5 {
 }
 
 #currency-field::placeholder {
-  color: rgba(214, 214, 214, 0.841);
+  color: rgba(255, 255, 255, 0.841);
 }
 
 #paymentSubmit {
@@ -495,17 +498,22 @@ h5 {
   color: rgb(238, 238, 238);
 }
 
+
+.chart h5 {
+  margin: 0 0 25px;
+  text-align: left;
+}
+
 #transactionsPanel {
   position: absolute;
   top: 70px;
-  left: -230px;
+  left: -260px;
   padding: 40px;
   /* width: 200px; */
   background: rgba(17, 17, 17, 0.811);
   height: 100vh;
   margin: 0 auto;
   transition-duration: 450ms;
-  overflow-y: scroll;
 }
 
 .transactionsPanel-clicked {
@@ -541,6 +549,7 @@ h5 {
   justify-content: space-between;
   align-content: baseline;
   width: 100%;
+  /* background: grey; */
   flex: 0;
   height: 25px;
 }
@@ -551,6 +560,8 @@ h5 {
   font-size: 0.7em;
   border-radius: 6px;
   background: rgba(7, 7, 7, 0.342);
+  z-index: 100;
+  /* font-weight: 300; */
   display: inline;
   transition-duration: 150ms;
 }
@@ -602,9 +613,11 @@ h5 {
 /* ========= Hamburger Menu CSS ========= */
 
 #nav-icon3 {
+  /* display: none; */
   width: 30px;
   height: 25px;
   position: absolute;
+  /* margin: 50px auto; */
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
@@ -614,8 +627,11 @@ h5 {
   -o-transition: 0.3s ease-in-out;
   transition: 0.3s ease-in-out;
   cursor: pointer;
+  /* background: lightgrey; */
   right: 2.4%;
   top: 26px;
+  /* background: yellow; */
+  /* z-index: 150; */
 }
 
 #nav-icon3 span {
