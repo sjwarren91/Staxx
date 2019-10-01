@@ -121,10 +121,10 @@ footer a:hover {
   height: 0px;
   overflow: hidden;
   color: #fff;
-  position: absolute;
+  /* position: absolute;
   top: 55%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
   background: rgba(0, 0, 0, 0.486);
   border-radius: 12px;
   width: 700px;
@@ -132,6 +132,7 @@ footer a:hover {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin: 130px auto 10px;
 }
 
 #staxx-logo-w {

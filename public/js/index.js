@@ -65,7 +65,7 @@ $(document).ready(function() {
     );
     $(".signup").animate(
       {
-        height: "605px"
+        minHeight: "605px"
       },
       500
     );
@@ -101,7 +101,7 @@ $(document).ready(function() {
     );
     $(".signup").animate(
       {
-        height: "350px"
+        minHeight: "350px"
       },
       500
     );
