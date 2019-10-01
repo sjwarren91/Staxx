@@ -1,16 +1,24 @@
 var db = require("../models");
+var moment = require("moment");
 
 module.exports = function(app) {
-  // Get all expenses for user
+  // Get all User transactions
   app.get("/expenses", function(req, res) {
     db.Expense.findAll({
       where: {
         UserId: req.user.id
-      },
-      include: [db.User] //unsure if this is necessary
+      }
     }).then(function(data) {
-      console.log(data);
-      res.json(data);
+      var render = [];
+      data.forEach(function(element) {
+        element.dataValues.amount /= 100;
+        element.dataValues.createdAt = moment(
+          element.dataValues.createdAt
+        ).format("HH:mm, ddd Do MMM");
+        render.push(element.dataValues);
+      });
+      console.log(render);
+      res.render("expenses", { transactions: render, layout: false });
     });
   });
 
@@ -28,23 +36,6 @@ module.exports = function(app) {
       }
     }).then(function(data) {
       res.json(data);
-    });
-  });
-
-  // Get all User transactions
-  app.get("/userexps", function(req, res) {
-    db.Expense.findAll({
-      where: {
-        UserId: req.user.id
-      }
-    }).then(function(data) {
-      var render = [];
-      data.forEach(function(element) {
-        element.dataValues.amount /= 100;
-        render.push(element.dataValues);
-      });
-      console.log(render);
-      res.render("expenses", { transactions: render, layout: false });
     });
   });
 
