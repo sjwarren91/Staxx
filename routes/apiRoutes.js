@@ -44,7 +44,7 @@ module.exports = function(app) {
         render.push(element.dataValues);
       });
       console.log(render);
-      res.render("expenses", { transactions: render });
+      res.render("expenses", { transactions: render, layout: false });
     });
   });
 

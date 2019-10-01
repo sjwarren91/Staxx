@@ -14,6 +14,15 @@ $(".allTransactions").on("click", function(event) {
   $("#transactionsPanel").toggleClass("transactionsPanel-clicked");
 });
 
+$("#logout").on("click", function() {
+  $.ajax("logout", {
+    method: "GET"
+  }).then(function() {
+    console.log("Logged out");
+    window.location.href = "/dashboard";
+  });
+});
+
 // Chart
 var expChart = new Chart(document.getElementById("doughnut-chart"), {
   type: "doughnut",
