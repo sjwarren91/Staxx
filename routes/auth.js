@@ -30,7 +30,7 @@ module.exports = function(app, passport) {
       if (err) {
         throw err;
       }
-      res.redirect("/");
+      res.json(true);
     });
   });
 
