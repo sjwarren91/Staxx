@@ -8,7 +8,7 @@ $(document).ready(function() {
         {
           width: "100px",
           top: "35px",
-          left: "6%"
+          left: "80px"
         },
         400
       );
@@ -18,7 +18,7 @@ $(document).ready(function() {
     setTimeout(function() {
       $(".signup").animate(
         {
-          height: "325px",
+          height: "350px",
           padding: "30px"
         },
         800
@@ -58,14 +58,14 @@ $(document).ready(function() {
     );
     $(".avatars").animate(
       {
-        height: "90px",
+        height: "100px",
         margin: "15px 0 0"
       },
       500
     );
     $(".signup").animate(
       {
-        height: "580px"
+        height: "605px"
       },
       500
     );
@@ -101,7 +101,7 @@ $(document).ready(function() {
     );
     $(".signup").animate(
       {
-        height: "335px"
+        height: "350px"
       },
       500
     );
