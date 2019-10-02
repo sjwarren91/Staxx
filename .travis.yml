@@ -8,6 +8,8 @@ cache:
     - node_modules
 before_install:
   - mysql -e 'CREATE DATABASE testdb;' -u root
+env:
+  - username=travis
 services:
   - mysql
 notifications:
