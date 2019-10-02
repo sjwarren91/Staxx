@@ -18,6 +18,9 @@
 </header>
 <div id="header-menu">
   <ul>
+    <li>
+      <span id="setGoal">Set Goal</span>
+    </li>
     <li id="logout">
       <span>Log Out</span>
     </li>
@@ -30,11 +33,25 @@
       <img src="../images/{{ avatar }}.jpg" id="pageImg" alt="Profile Picture">
       <span>Username</span>
       <h4>{{ firstname }}</h4>
-      <h3>Stack Tracker</h3>
-      <div id="moneyMeter">
-        <div style="width: {{ percentLeft }}%;"></div>
+      <h3>Add New Transaction</h3>
+      <div class="paymentInput">
+        <form method="post" action="#">
+          <input type="text" name="currency-field" id="currency-field" class="money-input"
+            pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" data-type="currency" placeholder="$000.00">
+        </form>
       </div>
-      <p>You have spent {{ percentLeft }}% of your money.</p>
+      <div id="category">
+        <select class="select-css">
+          <option value="0" id="defaultCat">Category</option>
+          <option value="1">Food</option>
+          <option value="2">Drink</option>
+          <option value="3">Party</option>
+        </select>
+        <button type="submit" id="paymentSubmit">Add</button>
+      </div>
+      <div id="transBtn">
+        <button class="allTransactions">View Transactions</button>
+      </div>
     </div>
     <div id="alerts">
       {{!-- alertNum will display:none when it is empty - should only contain
@@ -44,34 +61,45 @@
       <ul>
         {{#if notifications}}
         {{#each categories}}
-        <li>{{ notification }} <span class="alertTime">{{ notificationTime }}</span></li>
+        <li>{{ notification }}<span class="alertTime">{{ notificationTime }}</span></li>
         {{/each}}
         {{/if}}
       </ul>
     </div>
   </div>
   <div class="chartCont">
-    <div class="titleAndBtn">
-      <label for="currency-field" id="paymentLabel">Add New Transaction</label>
-      <button class="allTransactions">All Transactions</button>
+
+
+
+    <div class="money-cont">
+      <div>
+        <div id="moneyMeter">
+          <div style="width: {{ percentLeft }}%;"></div>
+        </div>
+      </div>
+      <div class="goal-left">
+        <h4>Limit: <span>$500</span></h4>
+        <h4>Remaining: <span class="remaining-span">$450</span></h4>
+      </div>
+      <p>You have spent {{ percentLeft }}% of your money.</p>
     </div>
-    <div id="category">
-      <select>
-        <option value="0" id="defaultCat">Category</option>
-        <option value="1">Food</option>
-        <option value="2">Drink</option>
-        <option value="3">Party</option>
-      </select>
+
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h4>Set your limit for the week ($)</h4>
+        <form>
+          <input type="number" name="set-goal" id="set-goal" class="money-input" placeholder="$000.00">
+          <button id="setGoalBtn">Set Goal</button>
+        </form>
+      </div>
+
     </div>
-    <div class="paymentInput">
-      <form method="post" action="#">
-        <input type="text" name="currency-field" id="currency-field" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
-          data-type="currency" placeholder="$000.00">
-        <button type="submit" id="paymentSubmit">Add</button>
-      </form>
-    </div>
+
     <div class="chart">
-      <h5>Transaction History</h5><canvas id="doughnut-chart"></canvas>
+      <canvas id="doughnut-chart"></canvas>
     </div>
   </div>
 </section>
