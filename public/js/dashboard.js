@@ -7,6 +7,7 @@ $(document).ready(function() {
   });
   getChart();
   getTransactions();
+  console.log(getGoal());
 });
 
 $(".allTransactions").on("click", function(event) {
@@ -78,7 +79,6 @@ function getChart() {
   $.ajax("expenseChart", {
     method: "GET"
   }).then(function(data) {
-    console.log(data);
     data.forEach(function(cat) {
       cat.total /= 100;
     });
@@ -91,8 +91,19 @@ function getTransactions() {
   $.ajax("expenses", {
     method: "GET"
   }).then(function(data) {
-    console.log(data);
     $("#transactionsPanel").html(data);
+  });
+}
+
+// function for updating goal field - expenses
+function getGoal() {
+  $.ajax("goal", {
+    method: "GET"
+  }).then(function(data) {
+    console.log(data);
+    var newGoal = (data[0].User.goal - parseInt(data[0].total)) / 100;
+    console.log(newGoal);
+    return newGoal;
   });
 }
 
@@ -181,10 +192,7 @@ $("#paymentSubmit").on("click", function(event) {
   $.ajax("/expenses", {
     method: "POST",
     data: expense
-  }).then(function(data) {
-    console.log(data);
+  }).then(function() {
     getChart();
   });
-
-  console.log(amount);
 });

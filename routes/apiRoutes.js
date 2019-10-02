@@ -73,7 +73,7 @@ module.exports = function(app) {
         [db.sequelize.fn("sum", db.sequelize.col("amount")), "total"]
       ],
       where: {
-        UserId: 1
+        UserId: req.user.id
       },
       include: [{ model: db.User, attributes: ["goal"] }]
     }).then(function(data) {
