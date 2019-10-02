@@ -3,17 +3,19 @@ var chaiHttp = require("chai-http");
 var server = require("../server");
 var db = require("../models");
 var expect = chai.expect;
-// var assert = chai.assert;
 
 chai.use(chaiHttp);
 
 var request;
 
 describe("Expenses", function() {
+  //Before each expense test
   beforeEach(function() {
     request = chai.request(server);
     return db.sequelize.sync({ force: true });
   });
+
+  //GET expenses- to render as HTML
   describe("GET expenses", function() {
     it("it should GET all the expenses", function(done) {
       db.User.bulkCreate([
@@ -45,11 +47,8 @@ describe("Expenses", function() {
     });
   });
 
+  //GET expensesChart- to send an array and object values
   describe("GET expensesChart", function() {
-    // beforeEach(function() {
-    //   request = chai.request(server);
-    //   return db.sequelize.sync({ force: true });
-    // });
     it("it should GET all the expenses as per category", function(done) {
       db.User.create({
         email: "john@doe.com",
