@@ -52,7 +52,7 @@ module.exports = function(app) {
   });
 
   // Set goal
-  app.post("/setgoal", function(req, res) {
+  app.post("/goal", function(req, res) {
     console.log(req.body);
     db.User.update(req.body, {
       where: {
@@ -63,6 +63,21 @@ module.exports = function(app) {
       if (data) {
         res.redirect("dashboard");
       }
+    });
+  });
+
+  // Get goal
+  app.get("/goal", function(req, res) {
+    db.Expense.findAll({
+      attributes: [
+        [db.sequelize.fn("sum", db.sequelize.col("amount")), "total"]
+      ],
+      where: {
+        UserId: 1
+      },
+      include: [{ model: db.User, attributes: ["goal"] }]
+    }).then(function(data) {
+      res.json(data);
     });
   });
 };
