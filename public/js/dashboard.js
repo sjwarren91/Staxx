@@ -179,3 +179,27 @@ $("#paymentSubmit").on("click", function(event) {
 
   console.log(amount);
 });
+
+var modal = document.getElementById("myModal");
+var span = document.getElementsByClassName("close")[0];
+
+span.onclick = function() {
+  modal.style.display = "none";
+};
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+$("#setGoal").on("click", function() {
+  modal.style.display = "block";
+});
+
+$("#setGoalBtn").on("click", function() {
+  // modal.style.display = "none";
+
+  var goal = $("#set-goal").val();
+  console.log(goal);
+});
