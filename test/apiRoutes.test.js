@@ -66,8 +66,6 @@ describe("Expenses", function() {
             var responseStatus = res.status;
             var responseBody = res.body;
 
-            console.log("responseBody", responseBody);
-
             expect(err).to.be.null;
             expect(responseStatus).to.equal(200);
 
@@ -84,6 +82,58 @@ describe("Expenses", function() {
 
             done();
           });
+        });
+      });
+    });
+  });
+
+  //POST expenses- to check object values
+  describe("POST expenses", function() {
+    it("it should POST new expense", function(done) {
+      db.User.create({
+        email: "john@doe.com",
+        password: "johndoe123",
+        firstname: "John",
+        lastname: "Doe",
+        avatar: "av2"
+      }).then(function() {
+        db.Expense.create({
+          name: "coke",
+          amount: 3,
+          category: "drink",
+          UserId: 1
+        }).then(function() {
+          var reqBody = {
+            name: "example",
+            amount: "10",
+            category: "drink"
+          };
+          request
+            .post("/expenses?user_id=1")
+            .send(reqBody)
+            .end(function(err, res) {
+              var responseStatus = res.status;
+              var responseBody = res.body;
+
+              expect(err).to.be.null;
+              expect(responseStatus).to.equal(200);
+
+              expect(responseBody)
+                .to.be.an("object")
+                .that.includes(reqBody);
+
+              expect(responseBody)
+                .to.be.an("object")
+                .that.includes({
+                  id: 2,
+                  name: "example",
+                  amount: "10",
+                  category: "drink",
+                  UserId: "1"
+                });
+
+              done();
+            });
         });
       });
     });
