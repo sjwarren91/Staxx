@@ -183,7 +183,7 @@ $("#paymentSubmit").on("click", function(event) {
   event.preventDefault();
 
   if ($("#category option:selected").text() === "Category") {
-    alert("Please select an expense category");
+    alert("Please select an expense category.");
     return;
   }
 
@@ -192,6 +192,8 @@ $("#paymentSubmit").on("click", function(event) {
     amount = amount.replace(/[$,]/g, "");
     amount = amount * 100;
   } else {
+    alert("Please enter transaction value.");
+    $("#currency-field").val("");
     return;
   }
   $("#currency-field").val("");
