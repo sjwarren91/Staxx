@@ -3,17 +3,19 @@ var chaiHttp = require("chai-http");
 var server = require("../server");
 var db = require("../models");
 var expect = chai.expect;
-// var assert = chai.assert;
 
 chai.use(chaiHttp);
 
 var request;
 
 describe("Expenses", function() {
+  //Before each expense test
   beforeEach(function() {
     request = chai.request(server);
     return db.sequelize.sync({ force: true });
   });
+
+  //GET expenses- to render as HTML
   describe("GET expenses", function() {
     it("it should GET all the expenses", function(done) {
       db.User.bulkCreate([
@@ -45,11 +47,8 @@ describe("Expenses", function() {
     });
   });
 
+  //GET expensesChart- to send an array and object values
   describe("GET expensesChart", function() {
-    // beforeEach(function() {
-    //   request = chai.request(server);
-    //   return db.sequelize.sync({ force: true });
-    // });
     it("it should GET all the expenses as per category", function(done) {
       db.User.create({
         email: "john@doe.com",
@@ -67,8 +66,6 @@ describe("Expenses", function() {
             var responseStatus = res.status;
             var responseBody = res.body;
 
-            console.log("responseBody", responseBody);
-
             expect(err).to.be.null;
             expect(responseStatus).to.equal(200);
 
@@ -85,6 +82,58 @@ describe("Expenses", function() {
 
             done();
           });
+        });
+      });
+    });
+  });
+
+  //POST expenses- to check object values
+  describe("POST expenses", function() {
+    it("it should POST new expense", function(done) {
+      db.User.create({
+        email: "john@doe.com",
+        password: "johndoe123",
+        firstname: "John",
+        lastname: "Doe",
+        avatar: "av2"
+      }).then(function() {
+        db.Expense.create({
+          name: "coke",
+          amount: 3,
+          category: "drink",
+          UserId: 1
+        }).then(function() {
+          var reqBody = {
+            name: "example",
+            amount: "10",
+            category: "drink"
+          };
+          request
+            .post("/expenses?user_id=1")
+            .send(reqBody)
+            .end(function(err, res) {
+              var responseStatus = res.status;
+              var responseBody = res.body;
+
+              expect(err).to.be.null;
+              expect(responseStatus).to.equal(200);
+
+              expect(responseBody)
+                .to.be.an("object")
+                .that.includes(reqBody);
+
+              expect(responseBody)
+                .to.be.an("object")
+                .that.includes({
+                  id: 2,
+                  name: "example",
+                  amount: "10",
+                  category: "drink",
+                  UserId: "1"
+                });
+
+              done();
+            });
         });
       });
     });
