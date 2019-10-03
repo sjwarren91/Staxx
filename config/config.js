@@ -9,9 +9,8 @@ module.exports = {
     dialect: "mysql"
   },
   test: {
-    username: "travis",
-    // username: process.env.dbusername,
-    // password: process.env.password,
+    username: process.env.dbusername,
+    password: process.env.password,
     database: "testdb",
     host: "localhost",
     dialect: "mysql",

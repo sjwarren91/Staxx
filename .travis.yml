@@ -6,6 +6,8 @@ branches:
 cache:
   directories:
     - node_modules
+env:
+  - dbusername=travis
 before_install:
   - mysql -e 'CREATE DATABASE testdb;' -u root
 services:
