@@ -4,9 +4,16 @@ var moment = require("moment");
 module.exports = function(app) {
   // Get all User transactions
   app.get("/expenses", function(req, res) {
+    //Select Environment (test or production)
+    var uid;
+    if (process.env.NODE_ENV === "test") {
+      uid = req.query.user_id;
+    } else {
+      uid = req.user.id;
+    }
     db.Expense.findAll({
       where: {
-        UserId: req.user.id
+        UserId: uid
       }
     }).then(function(data) {
       var render = [];
@@ -23,6 +30,13 @@ module.exports = function(app) {
 
   // Get all expenses for user and join on category
   app.get("/expenseChart", function(req, res) {
+    //Select Environment (test or production)
+    var uid;
+    if (process.env.NODE_ENV === "test") {
+      uid = req.query.user_id;
+    } else {
+      uid = req.user.id;
+    }
     db.Expense.findAll({
       attributes: [
         "category",
@@ -31,7 +45,7 @@ module.exports = function(app) {
       group: "category",
       order: [["category"]],
       where: {
-        UserId: req.user.id // "1" for test, need to replace with req.user.id
+        UserId: uid
       }
     }).then(function(data) {
       res.json(data);
@@ -40,11 +54,18 @@ module.exports = function(app) {
 
   // Create a new expense
   app.post("/expenses", function(req, res) {
+    //Select Environment (test or production)
+    var uid;
+    if (process.env.NODE_ENV === "test") {
+      uid = req.query.user_id;
+    } else {
+      uid = req.user.id;
+    }
     db.Expense.create({
       name: req.body.name,
       amount: req.body.amount,
       category: req.body.category,
-      UserId: req.user.id // for test, needs to be replaced with req.user.id
+      UserId: uid
     }).then(function(data) {
       res.json(data);
     });
