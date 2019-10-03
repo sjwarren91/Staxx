@@ -17,7 +17,6 @@ module.exports = function(app) {
         ).format("HH:mm, ddd Do MMM");
         render.push(element.dataValues);
       });
-      console.log(render);
       res.render("expenses", { transactions: render, layout: false });
     });
   });

@@ -101,6 +101,9 @@ function getGoal() {
     method: "GET"
   }).then(function(data) {
     console.log(data);
+    if (data[0].User.goal === 0) {
+      $("#myModal").css("display", "block");
+    }
     var newGoal = (data[0].User.goal - parseInt(data[0].total)) / 100;
     console.log(newGoal);
     return newGoal;
