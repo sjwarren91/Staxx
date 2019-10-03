@@ -24,7 +24,6 @@ module.exports = function(app) {
         ).format("HH:mm, ddd Do MMM");
         render.push(element.dataValues);
       });
-      console.log(render);
       res.render("expenses", { transactions: render, layout: false });
     });
   });
@@ -73,17 +72,35 @@ module.exports = function(app) {
   });
 
   // Set goal
-  app.post("/setgoal", function(req, res) {
+  app.post("/goal", function(req, res) {
     console.log(req.body);
-    db.User.update(req.body, {
-      where: {
-        id: req.user.id
+    db.User.update(
+      {
+        goal: req.body.goal
+      },
+      {
+        where: {
+          id: req.user.id
+        }
       }
-    }).then(function(data) {
+    ).then(function(data) {
       // Not sure if this is the best way to do this
-      if (data) {
-        res.redirect("dashboard");
-      }
+      res.json(data);
+    });
+  });
+
+  // Get goal
+  app.get("/goal", function(req, res) {
+    db.Expense.findAll({
+      attributes: [
+        [db.sequelize.fn("sum", db.sequelize.col("amount")), "total"]
+      ],
+      where: {
+        UserId: req.user.id
+      },
+      include: [{ model: db.User, attributes: ["goal"] }]
+    }).then(function(data) {
+      res.json(data);
     });
   });
 };

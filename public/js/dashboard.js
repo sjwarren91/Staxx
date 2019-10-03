@@ -7,6 +7,7 @@ $(document).ready(function() {
   });
   getChart();
   getTransactions();
+  getGoal();
 });
 
 $(".allTransactions").on("click", function(event) {
@@ -78,7 +79,6 @@ function getChart() {
   $.ajax("expenseChart", {
     method: "GET"
   }).then(function(data) {
-    console.log(data);
     data.forEach(function(cat) {
       cat.total /= 100;
     });
@@ -91,8 +91,33 @@ function getTransactions() {
   $.ajax("expenses", {
     method: "GET"
   }).then(function(data) {
-    console.log(data);
     $("#transactionsPanel").html(data);
+  });
+}
+
+// function for updating goal field - expenses
+function getGoal() {
+  $.ajax("goal", {
+    method: "GET"
+  }).then(function(data) {
+    console.log(data);
+    if (data[0].User.goal === 0) {
+      $("#myModal").css("display", "block");
+      return;
+    }
+    var newGoal = (data[0].User.goal - parseInt(data[0].total)) / 100;
+    var percent = (parseInt(data[0].total) / data[0].User.goal) * 100;
+    var sign = "";
+    if (newGoal < 0) {
+      sign = "-";
+      newGoal = newGoal * -1;
+    }
+    $("#bar").css("width", 100 - percent + "%");
+    $(".remaining-span").text(sign + "$" + newGoal.toFixed(2));
+    $("#goal-limit").text("$" + data[0].User.goal / 100);
+    $("#percent").text(
+      "You have spent %" + percent.toFixed(2) + " of your goal."
+    );
   });
 }
 
@@ -181,12 +206,10 @@ $("#paymentSubmit").on("click", function(event) {
   $.ajax("/expenses", {
     method: "POST",
     data: expense
-  }).then(function(data) {
-    console.log(data);
+  }).then(function() {
+    getGoal();
     getChart();
   });
-
-  console.log(amount);
 });
 
 var modal = document.getElementById("myModal");
@@ -208,7 +231,20 @@ $("#setGoal").on("click", function() {
 
 $("#setGoalBtn").on("click", function() {
   // modal.style.display = "none";
-
+  $("#myModal").css("display", "none");
   var goal = $("#set-goal").val();
+
+  if (goal < 0.01) {
+    alert("Please set a goal greater than 1c");
+    return;
+  }
   console.log(goal);
+  var post = { goal: goal * 100 };
+  $.ajax("/goal", {
+    method: "POST",
+    data: post
+  }).then(function(data) {
+    $("#goal-limit").text("$" + goal.toFixed(2));
+    console.log(data);
+  });
 });
