@@ -1,6 +1,6 @@
 var db = require("../models");
 var moment = require("moment");
-
+var Op = db.Sequelize.Op;
 module.exports = function(app) {
   // Get all User transactions
   app.get("/expenses", function(req, res) {
@@ -13,7 +13,10 @@ module.exports = function(app) {
     }
     db.Expense.findAll({
       where: {
-        UserId: uid
+        UserId: uid,
+        createdAt: {
+          [Op.between]: [moment().startOf("week"), moment().endOf("week")]
+        }
       }
     }).then(function(data) {
       var render = [];
@@ -45,7 +48,10 @@ module.exports = function(app) {
       group: "category",
       order: [["category"]],
       where: {
-        UserId: uid
+        UserId: uid,
+        createdAt: {
+          [Op.between]: [moment().startOf("week"), moment().endOf("week")]
+        }
       }
     }).then(function(data) {
       res.json(data);
@@ -95,6 +101,7 @@ module.exports = function(app) {
       attributes: [
         [db.sequelize.fn("sum", db.sequelize.col("amount")), "total"]
       ],
+      group: "category",
       where: {
         UserId: req.user.id
       },
