@@ -74,14 +74,14 @@
     <div class="money-cont">
       <div>
         <div id="moneyMeter">
-          <div style="width: {{ percentLeft }}%;"></div>
+          <div id="bar"></div>
         </div>
       </div>
       <div class="goal-left">
-        <h4>Limit: <span>$500</span></h4>
-        <h4>Remaining: <span class="remaining-span">$450</span></h4>
+        <h4>Limit: <span id="goal-limit"></span></h4>
+        <h4>Remaining: <span class="remaining-span"></span></h4>
       </div>
-      <p>You have spent {{ percentLeft }}% of your money.</p>
+      <p id="percent"></p>
     </div>
 
     <div id="myModal" class="modal">

@@ -7,7 +7,7 @@ $(document).ready(function() {
   });
   getChart();
   getTransactions();
-  console.log(getGoal());
+  getGoal();
 });
 
 $(".allTransactions").on("click", function(event) {
@@ -103,10 +103,21 @@ function getGoal() {
     console.log(data);
     if (data[0].User.goal === 0) {
       $("#myModal").css("display", "block");
+      return;
     }
     var newGoal = (data[0].User.goal - parseInt(data[0].total)) / 100;
-    console.log(newGoal);
-    return newGoal;
+    var percent = (parseInt(data[0].total) / data[0].User.goal) * 100;
+    var sign = "";
+    if (newGoal < 0) {
+      sign = "-";
+      newGoal = newGoal * -1;
+    }
+    $("#bar").css("width", 100 - percent + "%");
+    $(".remaining-span").text(sign + "$" + newGoal.toFixed(2));
+    $("#goal-limit").text("$" + data[0].User.goal / 100);
+    $("#percent").text(
+      "You have spent %" + percent.toFixed(2) + " of your goal."
+    );
   });
 }
 
@@ -196,6 +207,7 @@ $("#paymentSubmit").on("click", function(event) {
     method: "POST",
     data: expense
   }).then(function() {
+    getGoal();
     getChart();
   });
 });
@@ -219,7 +231,20 @@ $("#setGoal").on("click", function() {
 
 $("#setGoalBtn").on("click", function() {
   // modal.style.display = "none";
-
+  $("#myModal").css("display", "none");
   var goal = $("#set-goal").val();
+
+  if (goal < 0.01) {
+    alert("Please set a goal greater than 1c");
+    return;
+  }
   console.log(goal);
+  var post = { goal: goal * 100 };
+  $.ajax("/goal", {
+    method: "POST",
+    data: post
+  }).then(function(data) {
+    $("#goal-limit").text("$" + goal.toFixed(2));
+    console.log(data);
+  });
 });

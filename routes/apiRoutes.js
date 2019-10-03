@@ -74,15 +74,18 @@ module.exports = function(app) {
   // Set goal
   app.post("/goal", function(req, res) {
     console.log(req.body);
-    db.User.update(req.body, {
-      where: {
-        id: req.user.id
+    db.User.update(
+      {
+        goal: req.body.goal
+      },
+      {
+        where: {
+          id: req.user.id
+        }
       }
-    }).then(function(data) {
+    ).then(function(data) {
       // Not sure if this is the best way to do this
-      if (data) {
-        res.redirect("dashboard");
-      }
+      res.json(data);
     });
   });
 
