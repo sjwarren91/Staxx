@@ -264,8 +264,7 @@ small {
   color: #00bd6b;
 }
 
-/*      Dashboard     */
-
+.summaryChart,
 #dash {
   width: 770px;
   max-width: 95%;
