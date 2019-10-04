@@ -97,17 +97,35 @@ module.exports = function(app) {
 
   // Get goal
   app.get("/goal", function(req, res) {
+    db.User.findAll({
+      attributes: ["goal"],
+      where: {
+        id: req.user.id
+      }
+    }).then(function(data) {
+      res.json(data);
+    });
+  });
+
+  // get total spent
+  app.get("/spent", function(req, res) {
     db.Expense.findAll({
       attributes: [
         [db.sequelize.fn("sum", db.sequelize.col("amount")), "total"]
       ],
-      group: "category",
+      group: "UserId",
       where: {
         UserId: req.user.id
       },
       include: [{ model: db.User, attributes: ["goal"] }]
-    }).then(function(data) {
-      res.json(data);
-    });
+    })
+      .then(function(data) {
+        res.json(data);
+      })
+      .catch(function(err) {
+        console.error(err);
+        res.status(500);
+        res.json(0);
+      });
   });
 };
