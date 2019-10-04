@@ -31,7 +31,7 @@ describe("Expenses", function() {
           { name: "burger", amount: 10, category: "food", UserId: 1 },
           { name: "beer", amount: 8, category: "drink", UserId: 1 }
         ]).then(function() {
-          request.get("/expenses?user_id=1").end(function(err, res) {
+          request.get("/expenses/week?user_id=1").end(function(err, res) {
             var responseStatus = res.status;
 
             expect(err).to.be.null;
@@ -62,7 +62,7 @@ describe("Expenses", function() {
           { name: "beer", amount: 7, category: "drink", UserId: 1 },
           { name: "coke", amount: 3, category: "drink", UserId: 1 }
         ]).then(function() {
-          request.get("/expenseChart?user_id=1").end(function(err, res) {
+          request.get("/expenseChart/week?user_id=1").end(function(err, res) {
             var responseStatus = res.status;
             var responseBody = res.body;
 
