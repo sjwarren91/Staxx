@@ -298,10 +298,10 @@ small {
 }
 
 #moneyMeter {
-  background: linear-gradient(rgb(46, 46, 46), rgb(63, 63, 63));
+  background: linear-gradient(#161a1fe1, #292f38e1);
   width: 100%;
   border-radius: 11px;
-  border: 1px solid rgba(116, 116, 116, 0.514);
+  border: 1px solid rgba(108, 129, 156, 0.514);
 }
 
 .money-cont {
@@ -326,7 +326,7 @@ small {
 }
 
 .money-cont h4 {
-  color: #e2e2e2;
+  color: rgba(236, 240, 245, 0.884);
   margin: 0;
   text-transform: uppercase;
   padding: 0;
@@ -339,13 +339,13 @@ small {
 }
 
 .remaining-span {
-  color: rgb(155, 155, 155) !important
+  color: #ff8533 !important
 ;
 }
 
 .money-cont p {
   display: inline-block;
-  color: rgba(224, 224, 224, 0.792);
+  color: rgba(214, 224, 236, 0.884);
   margin: 0 0 15px;
   font-size: 0.8em;
 }
@@ -373,7 +373,7 @@ small {
   display: inline-block;
   color: #01c46f;
   margin: 10px 0 0;
-  border-top: 1px dashed rgba(97, 97, 97, 0.747);
+  border-top: 1px dashed rgba(127, 153, 187, 0.514);
   font-size: 0.9em;
   font-weight: 300;
   width: 100%;
@@ -473,7 +473,7 @@ h5 {
   padding: 12px;
   font-size: 1.5em;
   border-radius: 0.5em;
-  border: 1px solid rgb(128, 128, 128);
+  border: 1px solid rgba(127, 153, 187, 0.514);
   color: #01c46f;
   background: rgba(7, 7, 7, 0.342);
   margin: 0;
@@ -647,7 +647,7 @@ h5 {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  border: 1px solid rgb(128, 128, 128);
+  border: 1px solid rgba(127, 153, 187, 0.514);
   box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
   border-radius: 0.5em;
   -moz-appearance: none;
@@ -730,13 +730,13 @@ input:focus,
   width: 100%;
   padding-top: 15px;
   margin-top: 17px;
-  border-top: 1px dashed rgb(102, 102, 102);
+  border-top: 1px dashed rgba(127, 153, 187, 0.514);
 }
 
 .summaryBtn,
 .allTransactions {
   color: rgba(255, 255, 255, 0.744);
-  border: 1px solid rgb(102, 102, 102);
+  border: 1px solid rgba(127, 153, 187, 0.514);
   font-size: 0.8em;
   border-radius: 6px;
   background: rgba(7, 7, 7, 0.342);
