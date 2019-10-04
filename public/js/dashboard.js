@@ -5,9 +5,6 @@ $(document).ready(function() {
     $("div.menu").toggleClass("menu-clicked");
     $("#header-menu").toggleClass("header-menu-clicked");
   });
-  getChart();
-  getTransactions();
-  getSpendings();
   checkGoal();
 });
 
@@ -77,7 +74,7 @@ function updateChart(chart, data) {
 
 // function for getting the chart
 function getChart() {
-  $.ajax("expenseChart", {
+  $.ajax("expenseChart/" + setTime, {
     method: "GET"
   }).then(function(data) {
     data.forEach(function(cat) {
@@ -89,10 +86,11 @@ function getChart() {
 
 // function for getting all transactions
 function getTransactions() {
-  $.ajax("expenses", {
+  $.ajax("expenses/" + setTime, {
     method: "GET"
   }).then(function(data) {
     $("#transactionsPanel").html(data);
+    getChart();
   });
 }
 
@@ -102,21 +100,24 @@ function checkGoal() {
     method: "GET"
   }).then(function(data) {
     var goal = data[0].goal / 100;
+    setTime = data[0].state;
     if (goal === 0) {
       $("#myModal").css("display", "block");
     } else {
       $(".remaining-span").text("$" + goal);
       $("#goal-limit").text("$" + goal);
       $("#percent").text("You have spent %0 of your goal.");
+      getSpendings();
     }
   });
 }
 
 // function for updating goal field - expenses
 function getSpendings() {
-  $.ajax("spent", {
+  $.ajax("spent/" + setTime, {
     method: "GET"
   }).then(function(data) {
+    console.log(data);
     if (data.length > 0) {
       var newGoal = (data[0].User.goal - parseInt(data[0].total)) / 100;
       var percent = (parseInt(data[0].total) / data[0].User.goal) * 100;
@@ -150,6 +151,7 @@ function getSpendings() {
       $("#percent").text(
         "You have spent " + percent.toFixed(0) + "% of your goal."
       );
+      getTransactions();
     }
   });
 }
@@ -242,9 +244,7 @@ $("#paymentSubmit").on("click", function(event) {
     method: "POST",
     data: expense
   }).then(function() {
-    getSpendings();
-    getChart();
-    getTransactions();
+    checkGoal();
   });
 });
 
@@ -296,7 +296,7 @@ $("#setGoalBtn").on("click", function(event) {
     alert("Please set a goal greater than 1c");
     return;
   }
-  var post = { goal: goal * 100 };
+  var post = { goal: goal * 100, state: setTime };
   $.ajax("goal", {
     method: "POST",
     data: post
@@ -304,7 +304,7 @@ $("#setGoalBtn").on("click", function(event) {
     $(".remaining-span").text("$" + goal);
     $("#goal-limit").text("$" + goal);
     $("#percent").text("You have spent %0 of your goal.");
-    getSpendings();
+    checkGoal();
   });
 });
 
