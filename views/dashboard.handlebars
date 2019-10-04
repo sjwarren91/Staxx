@@ -53,19 +53,6 @@
         <button class="allTransactions">View Transactions</button>
       </div>
     </div>
-    <div id="alerts">
-      {{!-- alertNum will display:none when it is empty - should only contain
-      html when there are notifictions to be seen --}}
-      <div id="alertNum"></div>
-      <h5>Notifications</h5>
-      <ul>
-        {{#if notifications}}
-        {{#each categories}}
-        <li>{{ notification }}<span class="alertTime">{{ notificationTime }}</span></li>
-        {{/each}}
-        {{/if}}
-      </ul>
-    </div>
   </div>
   <div class="chartCont">
 
@@ -104,6 +91,9 @@
 
     <div class="chart">
       <canvas id="doughnut-chart"></canvas>
+      <div id="transBtn">
+        <button class="summaryBtn">Summary</button>
+      </div>
     </div>
   </div>
 </section>
