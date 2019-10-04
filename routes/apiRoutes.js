@@ -53,9 +53,15 @@ module.exports = function(app) {
           [Op.between]: [moment().startOf("week"), moment().endOf("week")]
         }
       }
-    }).then(function(data) {
-      res.json(data);
-    });
+    })
+      .then(function(data) {
+        res.json(data);
+      })
+      .catch(function(err) {
+        console.error(err);
+        res.status(500);
+        res.send();
+      });
   });
 
   // Create a new expense

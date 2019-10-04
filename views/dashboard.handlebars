@@ -18,8 +18,8 @@
 </header>
 <div id="header-menu">
   <ul>
-    <li>
-      <span id="setGoal">Set Goal</span>
+    <li id="setGoal">
+      <span>Set Goal</span>
     </li>
     <li id="logout">
       <span>Log Out</span>
@@ -89,7 +89,11 @@
       <!-- Modal content -->
       <div class="modal-content">
         <span class="close">&times;</span>
-        <h4>Set your limit for the week ($)</h4>
+        <h4>Set/Adjust your $ limit for the Week or Month </h4>
+        <div class="setTimeBtns">
+          <button class="setTime setTime-active" id="week">Week</button>
+          <button class="setTime" id="month">Month</button>
+        </div>
         <form>
           <input type="number" name="set-goal" id="set-goal" class="money-input" placeholder="$000.00">
           <button id="setGoalBtn">Set Goal</button>

@@ -125,11 +125,30 @@ function getSpendings() {
         sign = "-";
         newGoal = newGoal * -1;
       }
-      $("#bar").css("width", 100 - percent + "%");
+
+      var barLength = 100 - percent;
+
+      if (barLength < 75 && barLength >= 50) {
+        $("#bar")
+          .css("background", "linear-gradient(#fcff15, #d2d40d)")
+          .css("color", "#b0961a");
+      } else if (barLength < 50 && barLength >= 25) {
+        $("#bar")
+          .css("background", "linear-gradient(#ff9a18, #ff8f00)")
+          .css("color", "#9e5900");
+      } else if (barLength < 25) {
+        $("#bar")
+          .css("background", "linear-gradient(#ff5b5b, #ff2626)")
+          .css("color", "#931616");
+      }
+
+      $("#bar")
+        .css("width", barLength + "%")
+        .html(barLength.toFixed(0) + "%");
       $(".remaining-span").text(sign + "$" + newGoal.toFixed(2));
       $("#goal-limit").text("$" + data[0].User.goal / 100);
       $("#percent").text(
-        "You have spent %" + percent.toFixed(2) + " of your goal."
+        "You have spent " + percent.toFixed(0) + "% of your goal."
       );
     }
   });
@@ -242,13 +261,33 @@ window.onclick = function(event) {
   }
 };
 
+// click function for choosing a time block of either
+// a week or month. stores the choise as global var 'setTime'
+// default value is 'week'
+var setTime = "week";
+
+$(".setTime").on("click", function() {
+  $(this).toggleClass("setTime-active");
+
+  if ($(this).attr("id") === "week") {
+    $("#month").toggleClass("setTime-active");
+    setTime = "week";
+  } else if ($(this).attr("id") === "month") {
+    $("#week").toggleClass("setTime-active");
+    setTime = "month";
+  }
+});
+
 $("#setGoal").on("click", function() {
+  console.log(setTime);
   modal.style.display = "block";
+  $("#nav-icon1,#nav-icon2,#nav-icon3,#nav-icon4").toggleClass("open");
+  $("div.menu").toggleClass("menu-clicked");
+  $("#header-menu").toggleClass("header-menu-clicked");
 });
 
 $("#setGoalBtn").on("click", function(event) {
   event.preventDefault();
-  // modal.style.display = "none";
   $("#myModal").css("display", "none");
   var goal = $("#set-goal").val();
   $("#set-goal").val("");
