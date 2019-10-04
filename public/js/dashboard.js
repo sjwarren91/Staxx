@@ -112,11 +112,30 @@ function getGoal() {
       sign = "-";
       newGoal = newGoal * -1;
     }
-    $("#bar").css("width", 100 - percent + "%");
+
+    var barLength = 100 - percent;
+
+    if (barLength < 75 && barLength >= 50) {
+      $("#bar")
+        .css("background", "linear-gradient(#fcff15, #d2d40d)")
+        .css("color", "#b0961a");
+    } else if (barLength < 50 && barLength >= 25) {
+      $("#bar")
+        .css("background", "linear-gradient(#ff9a18, #ff8f00)")
+        .css("color", "#9e5900");
+    } else if (barLength < 25) {
+      $("#bar")
+        .css("background", "linear-gradient(#ff5b5b, #ff2626)")
+        .css("color", "#931616");
+    }
+
+    $("#bar")
+      .css("width", barLength + "%")
+      .html(barLength.toFixed(0) + "%");
     $(".remaining-span").text(sign + "$" + newGoal.toFixed(2));
     $("#goal-limit").text("$" + data[0].User.goal / 100);
     $("#percent").text(
-      "You have spent %" + percent.toFixed(2) + " of your goal."
+      "You have spent " + percent.toFixed(0) + "% of your goal."
     );
   });
 }

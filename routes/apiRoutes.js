@@ -53,9 +53,15 @@ module.exports = function(app) {
           [Op.between]: [moment().startOf("week"), moment().endOf("week")]
         }
       }
-    }).then(function(data) {
-      res.json(data);
-    });
+    })
+      .then(function(data) {
+        res.json(data);
+      })
+      .catch(function(err) {
+        console.error(err);
+        res.status(500);
+        res.send();
+      });
   });
 
   // Create a new expense
@@ -101,7 +107,7 @@ module.exports = function(app) {
       attributes: [
         [db.sequelize.fn("sum", db.sequelize.col("amount")), "total"]
       ],
-      group: "category",
+      group: "UserId",
       where: {
         UserId: req.user.id
       },
