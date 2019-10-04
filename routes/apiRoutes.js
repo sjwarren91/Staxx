@@ -3,8 +3,9 @@ var moment = require("moment");
 var Op = db.Sequelize.Op;
 module.exports = function(app) {
   // Get all User transactions
-  app.get("/expenses", function(req, res) {
+  app.get("/expenses/:state", function(req, res) {
     //Select Environment (test or production)
+    var state = req.params.state;
     var uid;
     if (process.env.NODE_ENV === "test") {
       uid = req.query.user_id;
@@ -15,7 +16,7 @@ module.exports = function(app) {
       where: {
         UserId: uid,
         createdAt: {
-          [Op.between]: [moment().startOf("week"), moment().endOf("week")]
+          [Op.between]: [moment().startOf(state), moment().endOf(state)]
         }
       }
     }).then(function(data) {
@@ -32,8 +33,9 @@ module.exports = function(app) {
   });
 
   // Get all expenses for user and join on category
-  app.get("/expenseChart", function(req, res) {
+  app.get("/expenseChart/:state", function(req, res) {
     //Select Environment (test or production)
+    var state = req.params.state;
     var uid;
     if (process.env.NODE_ENV === "test") {
       uid = req.query.user_id;
@@ -50,7 +52,7 @@ module.exports = function(app) {
       where: {
         UserId: uid,
         createdAt: {
-          [Op.between]: [moment().startOf("week"), moment().endOf("week")]
+          [Op.between]: [moment().startOf(state), moment().endOf(state)]
         }
       }
     })
@@ -88,7 +90,8 @@ module.exports = function(app) {
     console.log(req.body);
     db.User.update(
       {
-        goal: req.body.goal
+        goal: req.body.goal,
+        state: req.body.state
       },
       {
         where: {
@@ -104,7 +107,7 @@ module.exports = function(app) {
   // Get goal
   app.get("/goal", function(req, res) {
     db.User.findAll({
-      attributes: ["goal"],
+      attributes: ["goal", "state"],
       where: {
         id: req.user.id
       }
@@ -114,14 +117,18 @@ module.exports = function(app) {
   });
 
   // get total spent
-  app.get("/spent", function(req, res) {
+  app.get("/spent/:state", function(req, res) {
+    var state = req.params.state;
     db.Expense.findAll({
       attributes: [
         [db.sequelize.fn("sum", db.sequelize.col("amount")), "total"]
       ],
       group: "UserId",
       where: {
-        UserId: req.user.id
+        UserId: req.user.id,
+        createdAt: {
+          [Op.between]: [moment().startOf(state), moment().endOf(state)]
+        }
       },
       include: [{ model: db.User, attributes: ["goal"] }]
     })

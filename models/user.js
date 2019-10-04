@@ -38,6 +38,11 @@ module.exports = function(sequelize, DataTypes) {
           isNumeric: true
         },
         defaultValue: 0
+      },
+      state: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: "week"
       }
     },
     {
