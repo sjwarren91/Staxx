@@ -684,7 +684,8 @@ input:focus,
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background: rgba(56, 56, 56, 0.811);
+  background: #2a3038cb;
+  height: 100vh;
   max-height: 100vh;
   margin: 0 auto;
   transition-duration: 450ms;
@@ -783,7 +784,7 @@ input:focus,
   transition-duration: 150ms;
   cursor: pointer;
   /* background: rgba(53, 53, 53, 0.342); */
-  background: #2429316b;
+  background: #2a3038cb;
 }
 
 #header-menu li:hover {
