@@ -307,3 +307,8 @@ $("#setGoalBtn").on("click", function(event) {
     checkGoal();
   });
 });
+
+$("#summaryBtn").on("click", function(event) {
+  event.preventDefault();
+  //get summary info and display at summary.handlebars
+});
