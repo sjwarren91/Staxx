@@ -284,6 +284,7 @@ small {
   border-radius: 10px;
   align-self: flex-start;
   margin: 0 0 10px 0;
+  transition-duration: 200ms;
 }
 
 #pageImg {
@@ -309,6 +310,7 @@ small {
   border-radius: 13px;
   text-align: center;
   margin-bottom: 10px;
+  max-width: 100%;
 }
 
 .money-cont > :first-child {
@@ -390,9 +392,10 @@ small {
 }
 
 .chart {
-  width: 100%;
+  max-width: 100%;
+  /* max-width:  */
   margin-right: 0;
-  padding: 20px 20px 20px;
+  padding: 20px 20px 32px;
   /* background: rgba(56, 56, 56, 0.811); */
   background: #2a3038e1;
   flex: 1;
@@ -467,6 +470,9 @@ h5 {
 
 .chartCont {
   flex: 1;
+  max-width: 470px;
+  width: 100%;
+  transition-duration: 200ms;
 }
 
 .money-input {
@@ -872,3 +878,23 @@ input:focus,
 }
 
 /* ========= End Hamburger Menu CSS ======== */
+
+@media (max-width: 805px) {
+  #dash {
+    flex-direction: column;
+  }
+
+  #profile-dash,
+  .chartCont {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #dash > :first-child {
+    margin-right: 0;
+  }
+
+  #paymentSubmit {
+    width: 50%;
+  }
+}
