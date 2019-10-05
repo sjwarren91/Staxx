@@ -35,7 +35,8 @@ var expChart = new Chart(document.getElementById("doughnut-chart"), {
           "#2c2e47",
           "#ffff7a",
           "#ff9b6c",
-          "#ea4651"
+          "#ea4651",
+          "#1dd172"
         ],
         data: [], // the data array goes here
         borderColor: "##eee",
@@ -106,7 +107,7 @@ function checkGoal() {
     } else {
       $(".remaining-span").text("$" + goal);
       $("#goal-limit").text("$" + goal);
-      $("#percent").text("You have spent %0 of your goal.");
+      $("#percent").text("You have spent 0% of your goal.");
       getSpendings();
     }
   });

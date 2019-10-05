@@ -359,6 +359,7 @@ small {
   overflow: hidden;
   color: #006b3d;
   font-weight: bold;
+  transition-duration: 350ms;
 }
 
 #profile-dash h4 {
